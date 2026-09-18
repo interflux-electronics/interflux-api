@@ -16,8 +16,7 @@ class ProductFamily < ApplicationRecord
   belongs_to :product_family, optional: true
   alias_attribute :parent, :product_family
 
-  # TODO: does not fetch all sub and main families...
-  has_many :products
+  has_many :products, foreign_key: :main_family_id, inverse_of: :main_family
   has_many :product_uses, through: :products
   has_many :uses, through: :product_uses
 
