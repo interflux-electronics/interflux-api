@@ -29,7 +29,6 @@
 #  updated_at                 :datetime         not null
 #  image_id                   :string
 #  main_family_id             :string
-#  product_family_id          :string
 #  sub_family_id              :string
 #  superior_product_id        :string
 #

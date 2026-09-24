@@ -45,8 +45,6 @@ module V1
           images
           main_family
           product_documents
-          product_family
-          product_family.product_family
           product_images
           product_images.image
           product_qualities
@@ -85,11 +83,10 @@ module V1
 
       def creatable_relationships
         %i[
-          image
-          product_family
-          superior_product
           main_family
           sub_family
+          image
+          superior_product
         ]
       end
     end

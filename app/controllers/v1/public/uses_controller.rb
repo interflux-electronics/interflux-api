@@ -38,7 +38,8 @@ module V1
           use_images.image
           product_uses
           products
-          products.product_family
+          products.main_family
+          products.sub_family
           products.image
           products.uses
           products.qualities

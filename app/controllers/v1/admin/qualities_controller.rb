@@ -42,7 +42,6 @@ module V1
           image
           products
           products.image
-          products.product_family
           product_qualities
         ]
       end

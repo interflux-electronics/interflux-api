@@ -5,7 +5,7 @@ namespace :products do
     puts '---------'
 
     Product.all.each do |product|
-      family = product.product_family
+      family = product.main_family
 
       if family.sub_family?
         product.update!(

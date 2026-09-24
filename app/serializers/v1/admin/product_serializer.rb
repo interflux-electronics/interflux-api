@@ -24,7 +24,6 @@ module V1
                  :front_page_rank
 
       belongs_to :image
-      belongs_to :product_family
       belongs_to :main_family, serializer: :product_family
       belongs_to :sub_family, serializer: :product_family
       belongs_to :superior_product, serializer: :product

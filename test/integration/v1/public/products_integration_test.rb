@@ -46,7 +46,7 @@ module V1
       test 'can include product family' do
         skip('TODO: improve test')
 
-        get '/v1/public/products/LMPA-Q6?include=product_family', headers: @header
+        get '/v1/public/products/LMPA-Q6?include=main_family', headers: @header
 
         # Should be allowed
         assert_response 200

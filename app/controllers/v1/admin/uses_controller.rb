@@ -43,7 +43,6 @@ module V1
           use_images
           products
           products.image
-          products.product_family
           product_uses
         ]
       end

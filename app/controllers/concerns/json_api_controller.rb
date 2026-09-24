@@ -476,7 +476,7 @@ module JsonApiController
     return {} if creatable_relationships.empty?
 
     # First we permit the all creatable relationships.
-    # { product: { data: [:id, :type] }, product_family: { data: [:id, :type] } }
+    # { product: { data: [:id, :type] }, main_family: { data: [:id, :type] } }
     expected_json = {}
     creatable_relationships.each { |x| expected_json[x] = { data: %i[id type] } }
     params.require(:data).require(:relationships).permit(expected_json)
