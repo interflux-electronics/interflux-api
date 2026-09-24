@@ -11,9 +11,8 @@ module V1
       belongs_to :product_family
 
       has_many :products, if: requested?('products')
-      has_many :product_family_images, if: requested?('product_family_images')
       has_many :product_uses, if: requested?('product_uses')
-      has_many :uses, if: requested?('products')
+      has_many :uses, if: requested?('uses')
 
       cache_options store: Rails.cache, namespace: 'jsonapi-serializer', expires_in: 1.day
     end

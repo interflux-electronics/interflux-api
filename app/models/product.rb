@@ -29,20 +29,12 @@
 #  updated_at                 :datetime         not null
 #  image_id                   :string
 #  main_family_id             :string
-#  product_family_id          :string
 #  sub_family_id              :string
 #  superior_product_id        :string
 #
 class Product < ApplicationRecord
-  # key: label
-
   belongs_to :main_family, class_name: 'ProductFamily', optional: true
   belongs_to :sub_family, class_name: 'ProductFamily', optional: true
-
-  # DEPRECATED
-  belongs_to :product_family, optional: true
-  alias_attribute :family, :product_family
-  accepts_nested_attributes_for :product_family
 
   belongs_to :image, optional: true
   alias_attribute :avatar, :image

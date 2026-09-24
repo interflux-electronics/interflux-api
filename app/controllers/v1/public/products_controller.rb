@@ -56,8 +56,6 @@ module V1
           images
           main_family
           product_documents
-          product_family
-          product_family.product_family
           product_images
           product_images.image
           product_qualities

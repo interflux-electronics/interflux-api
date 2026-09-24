@@ -123,7 +123,7 @@ after :product_families,
       product_id: product.id
     )
 
-    puts "#{i} | #{product.product_family.name_single} | #{product.name} | #{properties.name}"
+    puts "#{i} | #{product.main_family.name_single} | #{product.name} | #{properties.name}"
 
     if container.nil?
       puts "////// No container for: #{code} - #{name} //////"

@@ -36,7 +36,7 @@ after :product_families do
       # popular: product.popular || false,
       # new: product.new || false,
 
-      product_family_id: family.id
+      main_family_id: family.id
     )
 
     record = Product.find_by(slug: product.slug)

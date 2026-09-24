@@ -36,8 +36,8 @@ module V1
           products
           products.image
           products.features
-          product_family_images
-          product_family_images.image
+          products.uses
+          products.sub_family
           product_uses
           uses
         ]

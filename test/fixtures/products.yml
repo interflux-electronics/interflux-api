@@ -29,7 +29,6 @@
 #  updated_at                 :datetime         not null
 #  image_id                   :string
 #  main_family_id             :string
-#  product_family_id          :string
 #  sub_family_id              :string
 #  superior_product_id        :string
 #
@@ -38,47 +37,47 @@ LMPA_Q6:
   name: LMPA Q6
   slug: LMPA-Q6
   public: true
-  product_family: solder_paste
+  main_family: solder_paste
   status: new
 
 IF_2005M:
   name: IF 2005M
   slug: IF-2005M
   public: true
-  product_family: soldering_flux
+  main_family: soldering_flux
   status: popular
 
 Pacific_2009M:
   name: PacIFic 2009M
   slug: PacIFic-2009M
   public: true
-  product_family: soldering_flux
+  main_family: soldering_flux
   status: promoted
 
 WSF-7700:
   name: WSF-7700
   slug: WSF-7700
   public: true
-  product_family: soldering_flux
+  main_family: soldering_flux
   status: demoted
 
 LMPA_Q5:
   name: LMPA Q5
   slug: LMPA-Q5
   public: true
-  product_family: solder_paste
+  main_family: solder_paste
   status: discontinued
 
 LMPA_Q4:
   name: LMPA Q4
   slug: LMPA-Q4
   public: true
-  product_family: solder_paste
+  main_family: solder_paste
   status: replaced
 
 LMPA_Q7:
   name: LMPA Q7
   slug: LMPA-Q7
   public: false
-  product_family: solder_paste
+  main_family: solder_paste
   status: offline

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2026_08_20_162054) do
+ActiveRecord::Schema.define(version: 2026_09_24_000001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -406,15 +406,6 @@ ActiveRecord::Schema.define(version: 2026_08_20_162054) do
     t.string "product_family_id"
   end
 
-  create_table "product_family_images", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "product_family_id"
-    t.string "image_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "rank_among_families"
-    t.integer "rank_among_images"
-  end
-
   create_table "product_features", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "product_id"
     t.string "feature_id"
@@ -481,7 +472,6 @@ ActiveRecord::Schema.define(version: 2026_08_20_162054) do
 
   create_table "products", primary_key: "slug", id: :string, force: :cascade do |t|
     t.string "name"
-    t.string "product_family_id"
     t.string "image_id"
     t.string "label"
     t.text "pitch"

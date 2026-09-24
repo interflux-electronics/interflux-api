@@ -43,6 +43,7 @@ module V1
           image
           use
           product
+          product.uses
         ]
       end
     end

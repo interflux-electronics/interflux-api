@@ -11,7 +11,6 @@ module V1
       belongs_to :product_family
 
       has_many :products, if: requested?('products')
-      has_many :product_family_images, if: requested?('product_family_images')
     end
   end
 end
