@@ -20,10 +20,6 @@ class ProductFamily < ApplicationRecord
   has_many :product_uses, through: :products
   has_many :uses, through: :product_uses
 
-  # TODO: deprecate product family images
-  has_many :product_family_images
-  has_many :images, through: :product_family_images, source: :image
-
   def main_family?
     parent.nil?
   end
