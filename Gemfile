@@ -15,9 +15,6 @@ gem 'pg'
 # For handling Cross-Origin Resource Sharing (CORS)
 gem 'rack-cors', require: 'rack/cors'
 
-# For loading in environment variables
-gem 'dotenv-rails'
-
 # For converting all incoming JSON to snake_case and outgoing JSON to dashes
 gem 'olive_branch'
 
