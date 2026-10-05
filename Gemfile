@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 ruby '3.2.2'
 
 # Ruby on Rails framework
-gem 'rails'
+gem 'rails', '7.1.6'
 
 # Puma app server
 gem 'puma', '>= 6.0'
@@ -25,7 +25,7 @@ gem 'olive_branch'
 gem 'jsonapi-serializer'
 
 # For token based authentication, specifically Json Web Token (JWT)
-gem 'jwt'
+gem 'jwt', '~> 2.2'
 
 # For enabling ActiveModel has_secure_password, effectively hiding user passwords from the database
 gem 'bcrypt'
@@ -59,7 +59,7 @@ gem 'rubocop', groups: %i[development], require: false
 gem 'rubocop-rails', groups: %i[development]
 
 # For testing (out-of-the-box with Rails 5)
-gem 'minitest', groups: %i[test]
+gem 'minitest', '~> 5.0', groups: %i[test]
 
 # For annotating models and fixtures with schema info.
 gem 'annotate', groups: %i[development]
