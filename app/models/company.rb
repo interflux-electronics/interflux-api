@@ -49,7 +49,8 @@ class Company < ApplicationRecord
   has_many :company_members, dependent: :destroy
   has_many :people, through: :company_members, source: :person
 
-  alias_attribute :members, :people
+  alias_method :members, :people
+  alias_method :members=, :people=
 
   has_many :public_members, -> { where(public: true) }, class_name: 'CompanyMember'
 end

@@ -14,7 +14,8 @@
 #
 class ProductFamily < ApplicationRecord
   belongs_to :product_family, optional: true
-  alias_attribute :parent, :product_family
+  alias_method :parent, :product_family
+  alias_method :parent=, :product_family=
 
   has_many :products, foreign_key: :main_family_id, inverse_of: :main_family
   has_many :product_uses, through: :products
