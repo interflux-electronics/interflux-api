@@ -50,6 +50,6 @@ class AddIpMetaToSessionJob < ApplicationJob
   end
 
   def api_key
-    ENV['IP_GEO_API_KEY']
+    Rails.application.credentials.ip_geo_api_key
   end
 end

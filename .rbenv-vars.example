@@ -1,14 +1,11 @@
+# Secrets moved to Rails credentials (config/credentials/*.yml.enc).
+# See config/credentials/credentials.template.yml
+#
+# Deploy / runtime metadata that may remain as ENV:
 RAILS_ENV=production
-DB_USER=
-DB_PASSWORD=
-SECRET_KEY_BASE=
-JWT_SECRET=
-SKYLIGHT_AUTHENTICATION=
-IP_GEO_API_KEY=
-DO_ACCESS=
-DO_SECRET=
-DO_ENDPOINT=https://
-DO_REGION=
-DO_BUCKET=
-SENDGRID_API_KEY=
-DEEPL_PRO_API_KEY=
+# RAILS_MASTER_KEY=
+# RAILS_LOG_TO_STDOUT=true
+# RAILS_SERVE_STATIC_FILES=true
+# GIT_BRANCH=
+# GIT_REVISION=
+# BUILD_TIMESTAMP=

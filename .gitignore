@@ -44,3 +44,6 @@
 # Ignore all the temporary CDN related files, except the README.
 /cdn/*
 !/cdn/README.md
+
+# Per-environment Rails credentials master keys (never commit)
+/config/credentials/*.key

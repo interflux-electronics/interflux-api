@@ -13,8 +13,8 @@ default: &default
 production:
   <<: *default
   database: interflux_production
-  username: <%= ENV['DB_USER'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
+  username: <%= Rails.application.credentials.dig(:postgres, :user) %>
+  password: <%= Rails.application.credentials.dig(:postgres, :pass) %>
 
 development:
   <<: *default
@@ -24,14 +24,13 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 #
-# ENV.fetch will first check if this environment variable is set, otherwise use given default.
-# We use this so the Github CI/CD work flows can overwrite these settings.
-# Github requires Postgres to set a password, though locally we don't want to.
+# PG_* host/port/database stay as ENV so GitHub CI can override connection metadata.
+# Postgres user/pass come from Rails credentials (see config/credentials/credentials.template.yml).
 #
 test:
   <<: *default
   database: <%= ENV.fetch('PG_DATABASE', 'interflux_test') %>
   host:     <%= ENV.fetch('PG_HOST', 'localhost') %>
   port:     <%= ENV.fetch('PG_PORT', 5432) %>
-  username: <%= ENV.fetch('PG_USER', nil) %>
-  password: <%= ENV.fetch('PG_PASSWORD', nil) %>
+  username: <%= Rails.application.credentials.dig(:postgres, :user) %>
+  password: <%= Rails.application.credentials.dig(:postgres, :pass) %>
