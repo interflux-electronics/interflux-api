@@ -1,8 +1,0 @@
----
-# The authentication token for the application.
-authentication: <%= ENV["SKYLIGHT_AUTHENTICATION"] %>
-
-# Info to uniquely identify deploys
-deploy:
-  git_sha: <%= ENV['GIT_REVISION'] %>
-  description: <%= ENV['BUILD_TIMESTAMP'] %>
