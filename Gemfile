@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Which version of Ruby to use (keep in sync with .ruby-version)
-ruby '3.0.0'
+ruby '3.2.2'
 
 # Ruby on Rails framework
 gem 'rails'
