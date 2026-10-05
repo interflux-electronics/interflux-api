@@ -176,3 +176,12 @@ set -x CPATH /opt/homebrew/include/
 set -x LIBRARY_PATH "/opt/homebrew/lib/"
 
 bin/bundle install
+
+
+# Edit credentials
+
+```sh
+EDITOR="code --wait" bin/rails credentials:edit --environment production
+EDITOR="code --wait" bin/rails credentials:edit --environment development
+EDITOR="code --wait" bin/rails credentials:edit --environment test
+```
