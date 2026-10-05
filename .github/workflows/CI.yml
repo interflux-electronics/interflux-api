@@ -17,12 +17,15 @@ jobs:
         env:
           POSTGRES_DB: interflux_test
           POSTGRES_HOST_AUTH_METHOD: trust
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     env:
       RAILS_ENV: test
-      # PG_DATABASE: interflux_test
-      # PG_USER: bot
-      # PG_HOST: localhost
-      # PG_PASSWORD: password
+      PGHOST: localhost
+      PGUSER: postgres
     steps:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
