@@ -9,7 +9,8 @@ environment 'production'
 # TODO: We should monitor and revive our Puma process with something like monit:
 # https://www.monterail.com/blog/2015/deployment-setup-for-jruby-rails-app-with-puma-mina-and-monit
 #
-daemonize true
+# daemonize removed in Puma 5+; manage the process with systemd/monit instead
+# daemonize true
 
 # By defining the amount of workers we enable "clustered mode". In clustered
 # mode one mother process will spawn X amount of child processes (workers)
