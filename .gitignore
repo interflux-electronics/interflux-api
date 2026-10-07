@@ -17,6 +17,16 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Ignore sockets, but keep the directory.
+/tmp/sockets/*
+!/tmp/sockets/
+!/tmp/sockets/.keep
+
 # Commands used in byebug
 .byebug_history
 

@@ -24,12 +24,12 @@ if rails_env == "production"
   before_fork do
     ActiveRecord::Base.connection_pool.disconnect! if defined?(ActiveRecord)
   end
-  on_worker_boot do
+  before_worker_boot do
     ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
   end
-  
+
   # serve over socket instead of port
-  bind 'unix:///var/www/api.interflux.com/tmp/sockets/puma.sock'
+  bind "unix:///var/www/api.interflux.com/tmp/sockets/puma.sock"
 end
 
 if rails_env == "development"
