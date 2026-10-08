@@ -86,7 +86,7 @@ class TranslateService
   end
 
   def api_key
-    ENV.fetch('DEEPL_PRO_API_KEY')
+    Rails.application.credentials.deepl_pro_api_key
   end
 
   def supported_languages
