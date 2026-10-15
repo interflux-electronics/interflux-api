@@ -35,69 +35,71 @@ jobs:
       - run: bin/rails db:schema:load
       - run: bin/rails test --verbose
 
-  deploy:
-    name: Deploy
-    runs-on: ubuntu-latest
-    needs: test
-    env:
-      SSH: ${{ secrets.FRANKFURT_SSH }}
-      URL: admin@frankfurt.server.interflux.com
-      ROOT: /var/www/rails.api.interflux.com
-    steps:
-      # Clone the repo to the worker server
-      - uses: actions/checkout@v2
+  # TODO: replace with deploy hook without giving SSH access to Github Actions
 
-      # Create directory for SSH
-      - run: mkdir ~/.ssh
+  # deploy:
+  #   name: Deploy
+  #   runs-on: ubuntu-latest
+  #   needs: test
+  #   env:
+  #     SSH: ${{ secrets.FRANKFURT_SSH }}
+  #     URL: admin@frankfurt.server.interflux.com
+  #     ROOT: /var/www/rails.api.interflux.com
+  #   steps:
+  #     # Clone the repo to the worker server
+  #     - uses: actions/checkout@v2
 
-      # Add the private key of the restricted bot user on the remote server
-      - run: 'echo "$SSH" > ~/.ssh/$URL'
+  #     # Create directory for SSH
+  #     - run: mkdir ~/.ssh
 
-      # Configure SSH to always use the custom key, so we don't have to do ssh -i
-      - run: 'echo "IdentityFile ~/.ssh/$URL" > ~/.ssh/config'
+  #     # Add the private key of the restricted bot user on the remote server
+  #     - run: 'echo "$SSH" > ~/.ssh/$URL'
 
-      # Add the remote server to trusted hosts
-      - run: ssh-keyscan -H frankfurt.server.interflux.com > ~/.ssh/known_hosts
+  #     # Configure SSH to always use the custom key, so we don't have to do ssh -i
+  #     - run: 'echo "IdentityFile ~/.ssh/$URL" > ~/.ssh/config'
 
-      # Set all SSH file permissions
-      - run: chmod 0755 ~/.ssh/; chmod 600 ~/.ssh/$URL; chmod 644 ~/.ssh/known_hosts
+  #     # Add the remote server to trusted hosts
+  #     - run: ssh-keyscan -H frankfurt.server.interflux.com > ~/.ssh/known_hosts
 
-      # Create time stamp
-      - run: echo "TIMESTAMP=$(date -u +"%Y-%m-%d-%H%M%S")-UTC" >> $GITHUB_ENV
+  #     # Set all SSH file permissions
+  #     - run: chmod 0755 ~/.ssh/; chmod 600 ~/.ssh/$URL; chmod 644 ~/.ssh/known_hosts
 
-      # Back up the database
-      - run: ssh $URL "cd $ROOT; pg_dump -Fc --no-owner --no-privileges --verbose -f db/dumps/production-$TIMESTAMP.dump interflux_production"
+  #     # Create time stamp
+  #     - run: echo "TIMESTAMP=$(date -u +"%Y-%m-%d-%H%M%S")-UTC" >> $GITHUB_ENV
 
-      # Pull the latest production code
-      - run: ssh $URL "cd $ROOT; git checkout production; git pull"
+  #     # Back up the database
+  #     - run: ssh $URL "cd $ROOT; pg_dump -Fc --no-owner --no-privileges --verbose -f db/dumps/production-$TIMESTAMP.dump interflux_production"
 
-      # Install Ruby
-      - run: ssh $URL "cd $ROOT; rbenv install --skip-existing"
+  #     # Pull the latest production code
+  #     - run: ssh $URL "cd $ROOT; git checkout production; git pull"
 
-      # Install Bundler
-      - run: ssh $URL "cd $ROOT; gem install bundler -v \"$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)\""
+  #     # Install Ruby
+  #     - run: ssh $URL "cd $ROOT; rbenv install --skip-existing"
 
-      # Install gems
-      - run: ssh $URL "cd $ROOT; bundle install"
+  #     # Install Bundler
+  #     - run: ssh $URL "cd $ROOT; gem install bundler -v \"$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)\""
 
-      # Migrate database
-      - run: ssh $URL "cd $ROOT; bin/rails db:migrate"
+  #     # Install gems
+  #     - run: ssh $URL "cd $ROOT; bundle install"
 
-      # Restart Puma
-      - run: ssh $URL "cd $ROOT; bin/pumactl -F config/puma/production.rb -T '12345' stop; bin/pumactl -F config/puma/production.rb -T '12345' start"
+  #     # Migrate database
+  #     - run: ssh $URL "cd $ROOT; bin/rails db:migrate"
 
-      # Hit the sanity endpoint of the Interflux backend and interpret the data sent back
-      - run: 'echo "JSON=$(curl --silent https://rails.api.interflux.com/sanity-check -H ''Content-Type: application/vnd.api+json'')" >> $GITHUB_ENV'
-      - run: echo "STATUS=${{ fromJson(env.JSON).status }}" >> $GITHUB_ENV
-      - run: echo "REMOTE_REVISION=${{ fromJson(env.JSON).build.git.revision }}" >> $GITHUB_ENV
-      - run: echo "LOCAL_REVISION=$(echo $GITHUB_SHA | cut -c 1-7)" >> $GITHUB_ENV
+  #     # Restart Puma
+  #     - run: ssh $URL "cd $ROOT; bin/pumactl -F config/puma/production.rb -T '12345' stop; bin/pumactl -F config/puma/production.rb -T '12345' start"
 
-      # Fail the work flow, something is wrong.
-      - name: "Sanity check: FAIL"
-        if: env.REMOTE_REVISION != env.LOCAL_REVISION || env.STATUS != 200
-        run: exit -1
+  #     # Hit the sanity endpoint of the Interflux backend and interpret the data sent back
+  #     - run: 'echo "JSON=$(curl --silent https://rails.api.interflux.com/sanity-check -H ''Content-Type: application/vnd.api+json'')" >> $GITHUB_ENV'
+  #     - run: echo "STATUS=${{ fromJson(env.JSON).status }}" >> $GITHUB_ENV
+  #     - run: echo "REMOTE_REVISION=${{ fromJson(env.JSON).build.git.revision }}" >> $GITHUB_ENV
+  #     - run: echo "LOCAL_REVISION=$(echo $GITHUB_SHA | cut -c 1-7)" >> $GITHUB_ENV
 
-      # All green, deploy was successful!
-      - name: "Sanity check: PASS"
-        if: env.REMOTE_REVISION == env.LOCAL_REVISION && env.STATUS == 200
-        run: exit 0
+  #     # Fail the work flow, something is wrong.
+  #     - name: "Sanity check: FAIL"
+  #       if: env.REMOTE_REVISION != env.LOCAL_REVISION || env.STATUS != 200
+  #       run: exit -1
+
+  #     # All green, deploy was successful!
+  #     - name: "Sanity check: PASS"
+  #       if: env.REMOTE_REVISION == env.LOCAL_REVISION && env.STATUS == 200
+  #       run: exit 0
