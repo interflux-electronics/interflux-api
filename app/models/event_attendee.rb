@@ -1,4 +1,3 @@
-require 'postmark/api'
 require 'ap'
 
 # == Schema Information

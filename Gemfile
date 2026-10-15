@@ -1,22 +1,19 @@
 source 'https://rubygems.org'
 
 # Which version of Ruby to use (keep in sync with .ruby-version)
-ruby '3.0.0'
+ruby '3.2.2'
 
 # Ruby on Rails framework
-gem 'rails'
+gem 'rails', '7.1.6'
 
 # Puma app server
-gem 'puma', '4.3.6'
+gem 'puma', '>= 6.0'
 
 # Postgress database
 gem 'pg'
 
 # For handling Cross-Origin Resource Sharing (CORS)
 gem 'rack-cors', require: 'rack/cors'
-
-# For loading in environment variables
-gem 'dotenv-rails'
 
 # For converting all incoming JSON to snake_case and outgoing JSON to dashes
 gem 'olive_branch'
@@ -25,7 +22,7 @@ gem 'olive_branch'
 gem 'jsonapi-serializer'
 
 # For token based authentication, specifically Json Web Token (JWT)
-gem 'jwt'
+gem 'jwt', '~> 2.2'
 
 # For enabling ActiveModel has_secure_password, effectively hiding user passwords from the database
 gem 'bcrypt'
@@ -59,7 +56,7 @@ gem 'rubocop', groups: %i[development], require: false
 gem 'rubocop-rails', groups: %i[development]
 
 # For testing (out-of-the-box with Rails 5)
-gem 'minitest', groups: %i[test]
+gem 'minitest', '~> 5.0', groups: %i[test]
 
 # For annotating models and fixtures with schema info.
 gem 'annotate', groups: %i[development]

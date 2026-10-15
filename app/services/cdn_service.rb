@@ -101,16 +101,16 @@ class CdnService
   end
 
   def bucket
-    ENV['DO_BUCKET']
+    Rails.application.credentials.dig(:digitalocean, :bucket)
   end
 
   def client
     Aws::S3::Client.new(
-      access_key_id: ENV['DO_ACCESS'],
-      secret_access_key: ENV['DO_SECRET'],
-      endpoint: ENV['DO_ENDPOINT'],
+      access_key_id: Rails.application.credentials.dig(:digitalocean, :access),
+      secret_access_key: Rails.application.credentials.dig(:digitalocean, :secret),
+      endpoint: Rails.application.credentials.dig(:digitalocean, :endpoint),
       force_path_style: false,
-      region: ENV['DO_REGION']
+      region: Rails.application.credentials.dig(:digitalocean, :region)
     )
   end
 

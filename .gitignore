@@ -17,6 +17,16 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Ignore sockets, but keep the directory.
+/tmp/sockets/*
+!/tmp/sockets/
+!/tmp/sockets/.keep
+
 # Commands used in byebug
 .byebug_history
 
@@ -44,3 +54,6 @@
 # Ignore all the temporary CDN related files, except the README.
 /cdn/*
 !/cdn/README.md
+
+# Per-environment Rails credentials master keys (never commit)
+/config/credentials/*.key

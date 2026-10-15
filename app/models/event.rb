@@ -28,7 +28,8 @@ class Event < ApplicationRecord
   has_many :permalinks
   has_many :event_attendees
 
-  alias_attribute :attendees, :event_attendees
+  alias_method :attendees, :event_attendees
+  alias_method :attendees=, :event_attendees=
 
   def location
     "#{city}, #{country.name_english}"

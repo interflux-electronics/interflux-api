@@ -32,10 +32,12 @@ class Image < ApplicationRecord
   has_many :people, through: :person_images, source: :person
 
   belongs_to :company, optional: true
-  alias_attribute :copyright_by, :company
+  alias_method :copyright_by, :company
+  alias_method :copyright_by=, :company=
 
   has_many :cdn_files
-  alias_attribute :files, :cdn_files
+  alias_method :files, :cdn_files
+  alias_method :files=, :cdn_files=
 
   # The user who uploaded the image.
   belongs_to :user, optional: true

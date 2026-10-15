@@ -37,7 +37,8 @@ class Product < ApplicationRecord
   belongs_to :sub_family, class_name: 'ProductFamily', optional: true
 
   belongs_to :image, optional: true
-  alias_attribute :avatar, :image
+  alias_method :avatar, :image
+  alias_method :avatar=, :image=
 
   has_many :product_qualities, dependent: :destroy
   has_many :qualities, through: :product_qualities, source: :quality

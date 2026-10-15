@@ -29,6 +29,6 @@ class JsonWebToken
   private
 
   def jwt_secret
-    ENV.fetch('JWT_SECRET')
+    Rails.application.credentials.jwt_secret
   end
 end

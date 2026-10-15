@@ -28,7 +28,8 @@ class Person < ApplicationRecord
   has_many :images, through: :person_images, source: :image
 
   belongs_to :image, optional: true
-  alias_attribute :avatar, :image
+  alias_method :avatar, :image
+  alias_method :avatar=, :image=
 
   # To make full name searches possible we update the full name column after every save
   after_save :set_full_name, :set_avatar_props

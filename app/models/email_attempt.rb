@@ -67,7 +67,7 @@ class EmailAttempt < ApplicationRecord
     ap postmark_template_alias
     ap postmark_template_model
 
-    api = Postmark::Api.new(server_token: ENV['POSTMARK_SERVER_TOKEN'])
+    api = Postmark::Api.new(server_token: Rails.application.credentials.postmark_server_token)
 
     response = api.send_email_with_template(
       message_stream: postmark_stream,

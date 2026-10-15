@@ -28,3 +28,10 @@ pg_restore --clean --if-exists --no-owner --no-privileges --dbname=$db_dev db/du
 echo "----------"
 echo "✅ Synced local database with production"
 echo "----------"
+
+# In case:
+# PG::ObjectInUse: ERROR:  database "interflux_development" is being accessed by other users
+# Use:
+# psql -d postgres -c "SELECT pid, usename, application_name, client_addr FROM pg_stat_activity WHERE datname = 'interflux_development';"
+# Then:
+# kill -9 <PID>
