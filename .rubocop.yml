@@ -1,5 +1,6 @@
 ---
-require: rubocop-rails
+plugins:
+  - rubocop-rails
 
 # Ignore some folders completely
 AllCops:
@@ -73,5 +74,3 @@ Style/HashTransformKeys:
   Enabled: true
 Style/HashTransformValues:
   Enabled: true
-
-
