@@ -60,3 +60,13 @@ gem 'minitest', '~> 5.0', groups: %i[test]
 
 # For annotating models and fixtures with schema info.
 gem 'annotate', groups: %i[development]
+
+# For sending emails via Postmark
+gem 'postmark-rails'
+
+# HACK
+# The locked gem is json 3.1.0, pulled in by RuboCop (json >= 2.3 in Gemfile.lock). That version
+# dropped quirks_mode, so the call raises ArgumentError: unknown keyword: quirks_mode. The parameter
+# parser catches every exception and re-raises the generic ParseError
+# TODO: remove after upgrading to a Rails release that is compatible with json 3.
+gem 'json', '< 3'
