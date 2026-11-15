@@ -15,7 +15,7 @@ after :article_categories do
 
     category = ArticleCategory.find_by(slug: article.category)
 
-    byebug if category.nil?
+    debugger if category.nil?
 
     properties = OpenStruct.new(
       slug: article.slug,

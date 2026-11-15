@@ -19,7 +19,7 @@ after :countries, :companies do
 
     puts company_data.business_name
 
-    byebug if company_record.nil?
+    debugger if company_record.nil?
 
     company_data.markets = Country.all.map{|c| c[:name_english]} if company_data.markets.first == 'World'
 
@@ -28,7 +28,7 @@ after :countries, :companies do
 
       country_record = Country.find_by(name_english: market)
 
-      byebug if country_record.nil?
+      debugger if country_record.nil?
 
       properties = OpenStruct.new(
         company_id: company_record.id,

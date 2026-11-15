@@ -16,7 +16,7 @@ after :countries do
     emails = company.emails.join(',') if company.emails.present?
     country = Country.find_by(name_english: company.country)
 
-    byebug if country.nil?
+    debugger if country.nil?
 
     properties = OpenStruct.new(
       business_name: company.business_name,

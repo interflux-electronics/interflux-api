@@ -1,5 +1,4 @@
 require 'json'
-require 'byebug'
 require 'ap'
 
 count_before = Language.count
@@ -28,7 +27,7 @@ data.each_with_index do |hash, i|
       public: public
     )
 
-    byebug if language.iso639_1.nil?
+    debugger if language.iso639_1.nil?
 
     if record.nil?
       Language.create!(properties.to_h)

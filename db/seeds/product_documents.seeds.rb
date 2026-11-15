@@ -7,7 +7,7 @@ Document.all.each_with_index do |document, i|
 
   slug = document.path.split('/').third
   product = Product.find_by(slug: slug)
-  byebug if product.nil?
+  debugger if product.nil?
 
   props = OpenStruct.new(
     product_id: product.id,

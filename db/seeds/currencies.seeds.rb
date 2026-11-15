@@ -1,5 +1,4 @@
 require 'json'
-require 'byebug'
 require 'ap'
 
 count_before = Currency.count
