@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2026_09_24_000001) do
-
+ActiveRecord::Schema[7.1].define(version: 2026_11_13_112013) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -19,8 +18,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
   create_table "article_categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "slug"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["name"], name: "index_article_categories_on_name", unique: true
     t.index ["slug"], name: "index_article_categories_on_slug", unique: true
   end
@@ -28,8 +27,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
   create_table "article_tags", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "article_id"
     t.uuid "tag_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["article_id"], name: "index_article_tags_on_article_id"
     t.index ["tag_id"], name: "index_article_tags_on_tag_id"
   end
@@ -38,8 +37,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "slug"
     t.string "title"
     t.boolean "public", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.text "body"
     t.date "date"
     t.uuid "article_category_id"
@@ -49,8 +48,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
 
   create_table "cdn_files", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "path"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "image_id"
     t.uuid "document_id"
     t.string "video_id"
@@ -72,8 +71,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.uuid "browser_session_id"
     t.uuid "user_id"
     t.uuid "visit_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "companies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -86,8 +85,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.decimal "latitude"
     t.decimal "longitude"
     t.string "country_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "legal_name"
     t.string "website"
     t.boolean "public"
@@ -115,8 +114,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
   create_table "company_markets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "company_id"
     t.string "country_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "rank_among_companies"
     t.integer "rank_among_countries"
     t.boolean "company_is_recommended", default: false
@@ -129,8 +128,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "email"
     t.string "phone"
     t.boolean "public", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "public_title", default: false
     t.boolean "public_email", default: false
     t.boolean "public_phone", default: false
@@ -144,8 +143,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
 
   create_table "containers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["name"], name: "index_containers_on_name", unique: true
   end
 
@@ -164,15 +163,15 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "timezones"
     t.string "top_level_domains"
     t.string "calling_codes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "country_currencies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "country_id"
     t.uuid "currency_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["country_id"], name: "index_country_currencies_on_country_id"
     t.index ["currency_id"], name: "index_country_currencies_on_currency_id"
   end
@@ -180,8 +179,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
   create_table "country_languages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "country_id"
     t.string "language_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["country_id"], name: "index_country_languages_on_country_id"
     t.index ["language_id"], name: "index_country_languages_on_language_id"
   end
@@ -189,8 +188,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
   create_table "currencies", primary_key: "code", id: :string, force: :cascade do |t|
     t.string "name"
     t.string "symbol"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "document_categories", primary_key: "slug", id: :string, force: :cascade do |t|
@@ -198,8 +197,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "gist"
     t.string "icon"
     t.integer "order"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "name_single"
   end
 
@@ -208,8 +207,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "name"
     t.string "language_id"
     t.string "document_category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "variations"
     t.boolean "public", default: false
   end
@@ -229,8 +228,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.jsonb "response_body", default: {}
     t.integer "response_status"
     t.boolean "delivered"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["created_by_type", "created_by_id"], name: "index_email_attempts_on_created_by"
     t.index ["response_body"], name: "index_email_attempts_on_response_body", using: :gin
   end
@@ -238,8 +237,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
   create_table "employees", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "company_id"
     t.uuid "person_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["company_id"], name: "index_employees_on_company_id"
     t.index ["person_id"], name: "index_employees_on_person_id"
   end
@@ -252,8 +251,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "role"
     t.string "company"
     t.string "email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "locale"
   end
 
@@ -263,8 +262,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "dates"
     t.string "city"
     t.string "country_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "start_date"
     t.string "end_date"
     t.boolean "has_registration_form"
@@ -283,16 +282,16 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "icon"
     t.string "gist"
     t.string "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "has_page"
   end
 
   create_table "images", primary_key: "path", id: :string, force: :cascade do |t|
     t.string "caption"
     t.string "alt"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.uuid "company_id"
     t.string "variations"
     t.uuid "user_id"
@@ -306,8 +305,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "name_native"
     t.string "three_letter_code"
     t.boolean "public", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "leads", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -323,22 +322,32 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "ip"
     t.uuid "country_id"
     t.uuid "ip_country_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["country_id"], name: "index_leads_on_country_id"
     t.index ["ip_country_id"], name: "index_leads_on_ip_country_id"
+  end
+
+  create_table "one_time_passwords", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.string "code", limit: 6, null: false
+    t.integer "attempts", default: 0, null: false
+    t.boolean "suspended", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_one_time_passwords_on_user_id"
   end
 
   create_table "page_views", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "path"
     t.uuid "browser_session_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "people", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "first_name"
     t.string "last_name"
     t.string "chinese_name"
@@ -364,15 +373,15 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
   create_table "person_images", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "person_id"
     t.string "image_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "product_complementary_products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "product_id"
     t.uuid "complement_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["complement_id"], name: "index_product_complementary_products_on_complement_id"
     t.index ["product_id"], name: "index_product_complementary_products_on_product_id"
   end
@@ -380,8 +389,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
   create_table "product_complements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "product_id"
     t.uuid "complement_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["complement_id"], name: "index_product_complements_on_complement_id"
     t.index ["product_id"], name: "index_product_complements_on_product_id"
   end
@@ -389,8 +398,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
   create_table "product_documents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "product_id"
     t.uuid "document_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "rank_among_products"
     t.integer "rank_among_documents"
   end
@@ -399,8 +408,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "name_single"
     t.string "name_plural"
     t.integer "rank"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "gist"
     t.string "the_full_monty"
     t.string "product_family_id"
@@ -409,15 +418,15 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
   create_table "product_features", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "product_id"
     t.string "feature_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "product_images", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "product_id"
     t.string "image_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "rank"
     t.boolean "public"
   end
@@ -425,8 +434,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
   create_table "product_qualities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "product_id"
     t.string "quality_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "rank"
     t.integer "rank_among_products"
     t.integer "rank_among_qualities"
@@ -436,8 +445,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
   create_table "product_related_articles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "product_id"
     t.uuid "article_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["article_id"], name: "index_product_related_articles_on_article_id"
     t.index ["product_id"], name: "index_product_related_articles_on_product_id"
   end
@@ -445,8 +454,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
   create_table "product_substitutes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "product_id"
     t.uuid "substitute_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["product_id"], name: "index_product_substitutes_on_product_id"
     t.index ["substitute_id"], name: "index_product_substitutes_on_substitute_id"
   end
@@ -454,8 +463,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
   create_table "product_uses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "product_id"
     t.string "use_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "rank_among_products"
     t.integer "rank_among_uses"
     t.boolean "show_on_product_list"
@@ -477,8 +486,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.text "pitch"
     t.text "properties"
     t.boolean "public", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "status", default: "offline"
     t.string "superior_product_id"
     t.integer "rank_among_family"
@@ -505,9 +514,19 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "text"
     t.string "icon"
     t.text "gist"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.string "image_id"
+  end
+
+  create_table "refresh_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.string "token", null: false
+    t.datetime "expires_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image_id"
+    t.index ["token"], name: "index_refresh_tokens_on_token", unique: true
+    t.index ["user_id"], name: "index_refresh_tokens_on_user_id"
   end
 
   create_table "server_side_renders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -517,8 +536,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "user_agent"
     t.string "ip"
     t.uuid "visit_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -534,8 +553,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "browser_languages"
     t.uuid "user_id"
     t.boolean "is_interflux_member", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "ip_response_code"
     t.string "ip_response_body"
     t.integer "ip_request_duration"
@@ -558,15 +577,15 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "company_name"
     t.string "image"
     t.integer "sequence"
-    t.datetime "created_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "updated_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
   end
 
   create_table "tags", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "slug"
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["slug"], name: "index_tags_on_slug", unique: true
   end
 
@@ -575,8 +594,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "language"
     t.string "native"
     t.string "english"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "status"
     t.text "english_before"
     t.string "error"
@@ -588,8 +607,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
   create_table "use_images", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "use_id"
     t.string "image_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "rank_among_uses"
     t.integer "rank_among_images"
   end
@@ -598,8 +617,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "email"
     t.string "password_digest"
     t.uuid "person_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "abilities"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
@@ -608,8 +627,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "text"
     t.string "icon"
     t.text "gist"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "image_id"
     t.integer "rank"
   end
@@ -618,8 +637,8 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.string "variations"
     t.string "title"
     t.string "notes"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "visits", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -636,38 +655,38 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.boolean "is_bot"
     t.uuid "browser_session_id"
     t.uuid "user_id"
-    t.datetime "first_seen"
-    t.datetime "last_seen"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "first_seen", precision: nil
+    t.datetime "last_seen", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "webinar_attendees", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "webinar_id"
     t.uuid "person_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "webinar_images", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "webinar_id"
     t.uuid "image_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "webinar_invitees", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "webinar_id"
     t.uuid "person_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "webinar_videos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "webinar_id"
     t.uuid "video_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "webinars", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -679,11 +698,13 @@ ActiveRecord::Schema.define(version: 2026_09_24_000001) do
     t.bigint "start_time"
     t.integer "duration"
     t.uuid "person_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "image_id"
     t.string "video_id"
     t.string "document_id"
   end
 
+  add_foreign_key "one_time_passwords", "users"
+  add_foreign_key "refresh_tokens", "users"
 end

@@ -41,6 +41,11 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
+  # The default :async adapter runs jobs on a thread pool. Transactional
+  # fixtures lock the connection to the test thread, so a job thread waits
+  # on that same connection and the suite never finishes.
+  config.active_job.queue_adapter = :test
+
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
@@ -52,4 +57,12 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Prevent development from sending real emails.
+  # :test stores them in ActionMailer::Base.deliveries (no Postmark).
+  config.action_mailer.delivery_method = :test
+
+  # The message body is only logged at debug; keep the app logger at info.
+  config.action_mailer.logger = ActiveSupport::Logger.new($stdout)
+  config.action_mailer.logger.level = Logger::DEBUG
 end

@@ -10,7 +10,7 @@ Image.all.each do |image|
   slug = image.path.split('/').third
   product = Product.find_by(slug: slug)
 
-  byebug if product.nil?
+  debugger if product.nil?
 
   props = OpenStruct.new(
     product_id: product.id,

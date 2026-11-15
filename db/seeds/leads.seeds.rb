@@ -1,5 +1,4 @@
 require 'yaml'
-require 'byebug'
 require 'ap'
 
 after :countries do

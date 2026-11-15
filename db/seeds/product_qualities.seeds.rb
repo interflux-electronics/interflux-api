@@ -16,7 +16,7 @@ after :products, :qualities do
     puts "#{counter} - #{product.name}"
 
     product_record = Product.find(product.slug)
-    byebug if product_record.nil?
+    debugger if product_record.nil?
 
     next if product.qualities.nil?
 

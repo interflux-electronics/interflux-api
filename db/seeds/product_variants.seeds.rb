@@ -1,5 +1,4 @@
 require 'csv'
-require 'byebug'
 require 'ap'
 
 after :product_families,
@@ -23,8 +22,8 @@ after :product_families,
     code = variant[0]
     name = variant[1]
 
-    byebug if code.nil?
-    byebug if name.nil?
+    debugger if code.nil?
+    debugger if name.nil?
 
     # Remove double spaces
     name = name.gsub(/  /, ' ')
@@ -82,8 +81,8 @@ after :product_families,
       end
     end
 
-    byebug if matches.count < 1
-    byebug if matches.count > 1
+    debugger if matches.count < 1
+    debugger if matches.count > 1
 
     product = Product.find_by(slug: matches.first['slug'])
 
@@ -115,7 +114,7 @@ after :product_families,
       container = Container.find_by(name: container_name)
     end
 
-    byebug if product.nil?
+    debugger if product.nil?
 
     properties = OpenStruct.new(
       code: code,

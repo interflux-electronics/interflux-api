@@ -4,7 +4,7 @@ module V1
   module Admin
     class AuthenticationIntegrationTest < ActionDispatch::IntegrationTest
       def setup
-        # byebug
+        # debugger
         # JsonWebToken.encode(user_id: users('admin').id)
         # @header = admin_header
       end

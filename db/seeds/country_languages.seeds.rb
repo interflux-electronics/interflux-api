@@ -1,6 +1,5 @@
 after :countries, :languages do
   require 'json'
-  require 'byebug'
   require 'ap'
 
   count_before = CountryLanguage.count
@@ -30,8 +29,8 @@ after :countries, :languages do
         country_record = Country.find(country.alpha_2_code)
         language_record = Language.find(language.iso639_1)
 
-        byebug if country_record.nil?
-        byebug if language_record.nil?
+        debugger if country_record.nil?
+        debugger if language_record.nil?
 
         properties = OpenStruct.new(
           country_id: country_record.id,

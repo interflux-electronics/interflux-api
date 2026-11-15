@@ -110,8 +110,18 @@ Rails.application.routes.draw do
 
     # For authentication across Interflux
     namespace :auth do
-      post '/token', to: 'token#create'
+      # One time passwords
+      post '/otp/create', to: 'one_time_password#create'
+      post '/otp/check', to: 'one_time_password#check'
+
+      # For refreshing access tokens
+      post '/refresh', to: 'session#refresh'
+
+      # Fetches auth user and orgs
       get '/user', to: 'user#show'
+
+      # Log out
+      post '/logout', to: 'session#destroy'
     end
   end
 

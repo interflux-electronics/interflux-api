@@ -16,7 +16,7 @@ after :products, :features do
     puts "#{counter} - #{product.name}"
 
     product_record = Product.find(product.slug)
-    byebug if product_record.nil?
+    debugger if product_record.nil?
 
     if product.processes
       puts "#{spaces}   Processes:"
@@ -24,7 +24,7 @@ after :products, :features do
         puts "#{spaces}   - #{process_slug}"
 
         feature_record = Feature.where(category: 'process').find(process_slug)
-        byebug if feature_record.nil?
+        debugger if feature_record.nil?
 
         properties = OpenStruct.new(
           product_id: product_record.id,
@@ -65,10 +65,10 @@ after :products, :features do
     end
 
     # feature_record = Feature.find_by(slug: product.slug)
-    # byebug if feature_record.nil?
+    # debugger if feature_record.nil?
     #
     #   product_record = Product.find_by(name: product_name)
-    #   byebug if product_record.nil?
+    #   debugger if product_record.nil?
     #
     #   relation_record = ProductFeature.where(product_id: product_record.id).where(feature_id: feature_record.id).first
     #

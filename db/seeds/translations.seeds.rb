@@ -8,9 +8,9 @@ def seed(list, language)
 
     if language != 'en'
       english_record = Translation.find_by(language: 'en', key: struct.key)
-      byebug if english_record.nil?
+      debugger if english_record.nil?
       english = english_record.native
-      byebug if english.nil?
+      debugger if english.nil?
       # needs_review = true
       # review_code = 'robot-translated'
     end

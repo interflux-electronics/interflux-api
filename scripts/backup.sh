@@ -1,30 +1,37 @@
 #!/usr/bin/env bash
 
-set -e
-set -o pipefail
+set -eou pipefail
 
-timestamp="$(date -u +"%Y-%m-%d-%H%M%S")-UTC"
-server=frankfurt # See ~/.ssh/config
-db_prod=interflux_production
-db_dev=interflux_development
+TIMESTAMP="$(date -u +"%Y-%m-%d-%H%M%S")-UTC"
+SSH_HOST=amsterdam
+DB_PROD=interflux_production
+DB_DEV=interflux_development
+FILE=$DB_PROD-$TIMESTAMP.dump
 
 echo "----------"
-echo "Backing up database"
-echo "Timestamp: $timestamp"
-echo "DB source: $db_prod @ $server"
-echo "DB target: $db_dev @ localhost"
+echo "Backing up database 💽💽"
 echo "----------"
-ssh $server "pg_dump -Fc --no-owner --no-privileges --verbose $db_prod" > db/dumps/$db_prod-$timestamp.dump
+echo "TIMESTAMP: $TIMESTAMP"
+echo "SSH_HOST: $SSH_HOST"
+echo "DB_PROD: $DB_PROD"
+echo "DB_DEV: $DB_DEV"
+echo "FILE: $FILE"
 echo "----------"
-echo "✅ Downloaded production database"
+
+ssh $SSH_HOST "pg_dump -Fc --no-owner --no-privileges --verbose $DB_PROD" > db/dumps/$FILE
+
 echo "----------"
+
 ls -la db/dumps
+
+echo "----------"
+echo "✅ Downloaded production database from $SSH_HOST to local"
 echo "----------"
 RAILS_ENV=development DISABLE_DATABASE_ENVIRONMENT_CHECK=1 rails db:drop db:create
 echo "----------"
 echo "✅ Reset local database"
 echo "----------"
-pg_restore --clean --if-exists --no-owner --no-privileges --dbname=$db_dev db/dumps/$db_prod-$timestamp.dump
+pg_restore --clean --if-exists --no-owner --no-privileges --dbname=$DB_DEV db/dumps/$FILE
 echo "----------"
 echo "✅ Synced local database with production"
 echo "----------"

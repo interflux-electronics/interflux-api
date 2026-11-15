@@ -27,11 +27,11 @@ gem 'jwt', '~> 2.2'
 # For enabling ActiveModel has_secure_password, effectively hiding user passwords from the database
 gem 'bcrypt'
 
-# For coloured printing in byebug and console `ap`
+# For coloured printing in the console `ap`
 gem 'awesome_print'
 
-# For halting the code and debugging `byebug`
-gem 'byebug', groups: %i[development test]
+# Rails default debugger. Stop with `debugger` or `binding.break`.
+gem 'debug', groups: %i[development test]
 
 # For seeding the database with modular control and dependencies
 gem 'seedbank'
@@ -60,3 +60,13 @@ gem 'minitest', '~> 5.0', groups: %i[test]
 
 # For annotating models and fixtures with schema info.
 gem 'annotate', groups: %i[development]
+
+# For sending emails via Postmark
+gem 'postmark-rails'
+
+# HACK
+# The locked gem is json 3.1.0, pulled in by RuboCop (json >= 2.3 in Gemfile.lock). That version
+# dropped quirks_mode, so the call raises ArgumentError: unknown keyword: quirks_mode. The parameter
+# parser catches every exception and re-raises the generic ParseError
+# TODO: remove after upgrading to a Rails release that is compatible with json 3.
+gem 'json', '< 3'

@@ -1,5 +1,4 @@
 require 'yaml'
-require 'byebug'
 require 'ap'
 
 after :product_families do
@@ -19,7 +18,7 @@ after :product_families do
 
     family = ProductFamily.find_by(slug: product.family)
 
-    byebug if family.nil?
+    debugger if family.nil?
 
     props = OpenStruct.new(
       slug: product.slug,

@@ -16,7 +16,7 @@ cdn_files.each_with_index do |file, i|
   name = file.path.split('/').last.split('.').first[0...-3].gsub("-", " ")
   shared_path = file.path[0...-7]
 
-  byebug if category.nil?
+  debugger if category.nil?
 
   variations = cdn_files.filter { |x| x.path.starts_with? shared_path } .map { |x| x.path.split('-').last } .join(',')
 
@@ -37,7 +37,7 @@ cdn_files.each_with_index do |file, i|
     document.update!(props.to_h)
   end
 
-  byebug if document.nil?
+  debugger if document.nil?
 
   file.document_id = document.id
   file.save!
