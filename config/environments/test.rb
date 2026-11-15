@@ -41,6 +41,11 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
+  # The default :async adapter runs jobs on a thread pool. Transactional
+  # fixtures lock the connection to the test thread, so a job thread waits
+  # on that same connection and the suite never finishes.
+  config.active_job.queue_adapter = :test
+
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
