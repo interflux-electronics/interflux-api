@@ -50,8 +50,12 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # Raise so OneTimePasswordController can rescue Postmark::Error.
+  # Mail swallows the error when this is false, before that rescue runs.
+  config.action_mailer.raise_delivery_errors = true
+
+  # Print the message through the mailer logger. Do not call Postmark.
+  config.action_mailer.delivery_method = :test
 
   config.action_mailer.perform_caching = false
 
@@ -82,6 +86,14 @@ Rails.application.configure do
     "#{severity} #{msg}\n"
     # "#{datetime.strftime('%H:%M:%S')} #{severity} #{msg}\n"
   end
+
+  # Action Mailer prints the rendered message only at debug, and its deliver
+  # subscriber stays silent unless the mailer logger is debug. Keep the
+  # application logger at info.
+  mailer_logger = Logger.new($stdout)
+  mailer_logger.level = Logger::DEBUG
+  mailer_logger.formatter = config.logger.formatter
+  config.action_mailer.logger = mailer_logger
 
   # Return a 404 to all requests who are not these hosts:
   config.hosts = ['localhost', '127.0.0.1']

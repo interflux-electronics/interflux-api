@@ -52,4 +52,12 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Prevent development from sending real emails.
+  # :test stores them in ActionMailer::Base.deliveries (no Postmark).
+  config.action_mailer.delivery_method = :test
+
+  # The message body is only logged at debug; keep the app logger at info.
+  config.action_mailer.logger = ActiveSupport::Logger.new($stdout)
+  config.action_mailer.logger.level = Logger::DEBUG
 end

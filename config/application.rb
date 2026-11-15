@@ -42,5 +42,14 @@ module ApiInterfluxCom
     # Enables the use of setting and reading cookies from controllers
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
+
+    # Emails are sent via Postmark
+    config.action_mailer.delivery_method = :postmark
+    config.action_mailer.postmark_settings = {
+      api_token: Rails.application.credentials.postmark_api_token
+    }
+
+    # Logs
+    config.log_level = :info
   end
 end
